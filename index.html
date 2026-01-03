@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendando Passaporte - Serviço Especializado</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gov: {
+                            blue: '#003366', // Azul Escuro Institucional
+                            light: '#005b96', // Azul Médio
+                            accent: '#fea500', // Laranja/Amarelo para destaque (Atenção)
+                            green: '#28a745', // Verde Sucesso
+                            gray: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Roboto"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'floating': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { scroll-behavior: smooth; }
+        .pattern-grid {
+            background-image: linear-gradient(#003366 1px, transparent 1px), linear-gradient(to right, #003366 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        /* Scrollbar customizada para o modal */
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #003366; border-radius: 4px; }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 antialiased">
+
+    <!-- Topbar de Aviso -->
+    <div class="bg-gov-accent text-gov-blue text-xs font-bold text-center py-2 px-4 uppercase tracking-wide">
+        <i class="fa-solid fa-circle-exclamation mr-2"></i> Assessoria Especializada - Não somos um órgão governamental
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-passport text-4xl text-gov-blue"></i>
+                    <div class="flex flex-col">
+                        <span class="text-gov-blue font-black text-xl leading-none uppercase tracking-tighter">Agendando</span>
+                        <span class="text-gov-light font-medium text-sm tracking-widest uppercase">Passaporte</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#como-funciona" class="text-gray-600 hover:text-gov-blue font-medium transition-colors">Como Funciona</a>
+                    <a href="#planos" class="text-gray-600 hover:text-gov-blue font-medium transition-colors">Nossos Planos</a>
+                    <a href="#contato" class="text-gray-600 hover:text-gov-blue font-medium transition-colors">Atendimento</a>
+                    <a href="#planos" class="bg-gov-blue hover:bg-gov-light text-white px-6 py-2 rounded font-bold uppercase text-sm transition-colors shadow-lg">
+                        Solicitar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gov-blue relative overflow-hidden clip-slant pb-24 pt-16 lg:pt-24">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 pattern-grid bg-white opacity-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center lg:text-left">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block bg-white/10 text-white px-4 py-1 rounded-full text-sm font-semibold mb-6 border border-white/20">
+                        <i class="fa-solid fa-check mr-2 text-gov-accent"></i> Mais de 5.000 passaportes emitidos
+                    </span>
+                    <h1 class="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight">
+                        Tiramos seu passaporte <br>
+                        <span class="text-gov-accent">sem dor de cabeça.</span>
+                    </h1>
+                    <p class="text-lg text-blue-100 mb-8 max-w-lg mx-auto lg:mx-0">
+                        Esqueça a burocracia, erros de preenchimento e a falta de vagas. Nossa equipe cuida de cada etapa do processo para você viajar tranquilo.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#planos" class="bg-gov-green hover:bg-green-600 text-white text-lg font-bold px-8 py-4 rounded shadow-lg transition-transform transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                            Ver Preços e Planos <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Card Ilustrativo -->
+                <div class="hidden lg:block relative">
+                    <div class="bg-white p-6 rounded-lg shadow-2xl transform rotate-2 max-w-md mx-auto">
+                        <div class="flex items-center justify-between border-b pb-4 mb-4">
+                            <span class="font-bold text-gov-blue">Status do Pedido</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Aprovado</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-gov-blue"><i class="fa-solid fa-file-signature"></i></div>
+                                <div><p class="text-sm font-bold">Documentação</p><p class="text-xs text-gray-500">Analisada e Validada</p></div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-gov-blue"><i class="fa-solid fa-calendar-check"></i></div>
+                                <div><p class="text-sm font-bold">Agendamento</p><p class="text-xs text-gray-500">Data Confirmada</p></div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-gov-blue"><i class="fa-solid fa-passport"></i></div>
+                                <div><p class="text-sm font-bold">Emissão</p><p class="text-xs text-gray-500">Pronto para retirada</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Steps -->
+    <section id="como-funciona" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gov-blue uppercase tracking-tight">Processo Simplificado</h2>
+                <div class="w-20 h-1 bg-gov-accent mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="text-center p-6 border border-gray-100 rounded-lg hover:shadow-card transition-shadow">
+                    <div class="w-16 h-16 bg-gov-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">1</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Escolha seu Plano</h3>
+                    <p class="text-gray-600 text-sm">Selecione o pacote que melhor atende sua urgência e necessidade.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="text-center p-6 border border-gray-100 rounded-lg hover:shadow-card transition-shadow">
+                    <div class="w-16 h-16 bg-gov-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">2</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Envie os Dados</h3>
+                    <p class="text-gray-600 text-sm">Preencha nosso formulário seguro. Nós cuidamos de toda a burocracia.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="text-center p-6 border border-gray-100 rounded-lg hover:shadow-card transition-shadow">
+                    <div class="w-16 h-16 bg-gov-blue text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg">3</div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Pronto!</h3>
+                    <p class="text-gray-600 text-sm">Receba a confirmação do agendamento e a lista de documentos organizada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="planos" class="py-20 bg-gov-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gov-blue uppercase tracking-tight">Tabela de Serviços</h2>
+                <p class="text-gray-600 mt-2">Valores transparentes para emissão de passaporte brasileiro.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="bg-white rounded shadow-card hover:shadow-floating transition-all duration-300 border-t-4 border-gray-400 p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-800 uppercase">Econômico</h3>
+                    <div class="my-4">
+                        <span class="text-3xl font-black text-gov-blue">R$ 147,00</span>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 flex-1">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Preenchimento Formulário</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Emissão GRU</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Orientação Documental</li>
+                    </ul>
+                    <button onclick="openCheckout('Plano Econômico', '147.00')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded transition-colors uppercase text-sm">
+                        Selecionar
+                    </button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded shadow-card hover:shadow-floating transition-all duration-300 border-t-4 border-gov-blue p-6 flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-gov-blue text-white text-[10px] font-bold px-2 py-1 uppercase rounded-bl">Popular</div>
+                    <h3 class="text-lg font-bold text-gray-800 uppercase">Rápido</h3>
+                    <div class="my-4">
+                        <span class="text-3xl font-black text-gov-blue">R$ 197,00</span>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 flex-1">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Tudo do Econômico</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Agendamento Prioritário</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Suporte via E-mail</li>
+                    </ul>
+                    <button onclick="openCheckout('Plano Rápido', '197.00')" class="w-full bg-gov-blue hover:bg-gov-light text-white font-bold py-3 rounded transition-colors uppercase text-sm">
+                        Selecionar
+                    </button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded shadow-card hover:shadow-floating transition-all duration-300 border-t-4 border-gov-accent p-6 flex flex-col transform lg:-translate-y-4 z-10">
+                    <div class="bg-gov-accent text-gov-blue text-center text-xs font-bold uppercase py-1 -mx-6 -mt-6 mb-6 rounded-t">Recomendado</div>
+                    <h3 class="text-lg font-bold text-gray-800 uppercase">Premium VIP</h3>
+                    <div class="my-4">
+                        <span class="text-3xl font-black text-gov-blue">R$ 297,00</span>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 flex-1">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> <strong>Monitoramento 24h</strong></li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Antecipação de Vagas</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Suporte WhatsApp</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Análise Anti-Erro</li>
+                    </ul>
+                    <button onclick="openCheckout('Plano Premium VIP', '297.00')" class="w-full bg-gov-accent hover:bg-yellow-500 text-gov-blue font-bold py-3 rounded transition-colors uppercase text-sm shadow-md">
+                        Contratar Agora
+                    </button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded shadow-card hover:shadow-floating transition-all duration-300 border-t-4 border-gray-400 p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-800 uppercase">Família / Visto</h3>
+                    <div class="my-4">
+                        <span class="text-3xl font-black text-gov-blue">R$ 497,00</span>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8 flex-1">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Pacote até 3 pessoas</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Assessoria Visto Americano</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gov-green mr-2"></i> Gestão Centralizada</li>
+                    </ul>
+                    <button onclick="openCheckout('Plano Família', '497.00')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 rounded transition-colors uppercase text-sm">
+                        Selecionar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER COM CONTATOS EM DESTAQUE -->
+    <footer id="contato" class="bg-gov-blue text-white py-16 border-t-4 border-gov-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Coluna 1: Marca -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fa-solid fa-passport text-3xl text-gov-accent"></i>
+                        <span class="font-black text-2xl uppercase tracking-tighter">Agendando Passaporte</span>
+                    </div>
+                    <p class="text-blue-200 text-sm max-w-sm mb-6">
+                        Empresa privada especializada em assessoria documental. Facilitamos o processo de emissão de passaportes e vistos, garantindo agilidade e segurança.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: CONTATOS (GRANDE DESTAQUE) -->
+                <div class="bg-gov-light/30 p-8 rounded-lg border border-blue-500/50">
+                    <h3 class="text-xl font-bold mb-6 border-b border-blue-400 pb-2 uppercase flex items-center gap-2">
+                        <i class="fa-solid fa-headset"></i> Canais de Atendimento
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Email SAC -->
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-gov-accent uppercase tracking-wider mb-1">Serviço de Atendimento ao Cliente (SAC)</span>
+                            <a href="mailto:sac@agendandopassaporte.com" class="text-xl md:text-2xl font-bold hover:text-gov-accent transition-colors break-all flex items-center gap-2">
+                                <i class="fa-regular fa-envelope text-lg"></i>
+                                sac@agendandopassaporte.com
+                            </a>
+                        </div>
+
+                        <!-- Email Comercial -->
+                        <div class="flex flex-col">
+                            <span class="text-xs font-bold text-gov-accent uppercase tracking-wider mb-1">Parcerias e Comercial</span>
+                            <a href="mailto:contato@agendandopassaporte.com" class="text-xl md:text-2xl font-bold hover:text-gov-accent transition-colors break-all flex items-center gap-2">
+                                <i class="fa-solid fa-at text-lg"></i>
+                                contato@agendandopassaporte.com
+                            </a>
+                        </div>
+
+                        <div class="pt-4 text-sm text-blue-200 flex items-center gap-2">
+                            <i class="fa-solid fa-clock"></i> Atendimento: Seg. a Sex. das 09h às 18h
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RODAPÉ BRANCO COM CERTIFICADO -->
+    <div class="bg-white py-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-6 text-center">
+            
+            <!-- Certificado Reclame Aqui -->
+            <a href="https://www.reclameaqui.com.br/empresa/agendando-passaporte/" target="_blank" class="transform hover:scale-105 transition-transform duration-300">
+                <img src="https://lolly.com.br/wp-content/uploads/2025/01/reclame-aq.png" alt="Selo de Qualidade Reclame Aqui - Agendando Passaporte" class="h-20 w-auto object-contain">
+            </a>
+
+            <!-- Copyright -->
+            <div class="text-xs text-gray-500 font-medium">
+                <p>&copy; 2024 Agendando Passaporte. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL (Funcional) -->
+    <div id="checkoutModal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity opacity-0" id="checkoutOverlay" onclick="closeModal('checkoutModal')"></div>
+        
+        <!-- Panel -->
+        <div class="absolute inset-y-0 right-0 w-full md:w-[500px] bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col h-full" id="checkoutPanel">
+            
+            <!-- Header do Modal -->
+            <div class="p-6 bg-gov-blue text-white shrink-0 shadow-md">
+                <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-xl uppercase">Finalizar Pedido</h3>
+                    <button onclick="closeModal('checkoutModal')" class="hover:text-gov-accent transition-colors">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+                </div>
+                <p class="text-blue-200 text-sm" id="selectedPlanDisplay">Plano Selecionado</p>
+            </div>
+
+            <!-- Form -->
+            <div class="flex-1 overflow-y-auto p-6 bg-gray-50 custom-scroll">
+                <form id="checkoutForm" onsubmit="event.preventDefault(); showPixModal();">
+                    
+                    <!-- Resumo Valor -->
+                    <div class="bg-white border-l-4 border-gov-green p-4 shadow-sm mb-6 flex justify-between items-center rounded-r">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase font-bold">Total a Pagar</p>
+                            <p class="text-2xl font-black text-gray-800" id="priceDisplay">R$ 0,00</p>
+                        </div>
+                        <i class="fa-solid fa-lock text-gov-green text-xl"></i>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase border-b pb-1 mb-3">Dados do Solicitante</h4>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded focus:border-gov-blue focus:ring-1 focus:ring-gov-blue outline-none transition-colors">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">CPF</label>
+                                <input type="text" required placeholder="000.000.000-00" class="w-full px-3 py-2 border border-gray-300 rounded focus:border-gov-blue focus:ring-1 focus:ring-gov-blue outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Telefone</label>
+                                <input type="tel" required placeholder="(00) 00000-0000" class="w-full px-3 py-2 border border-gray-300 rounded focus:border-gov-blue focus:ring-1 focus:ring-gov-blue outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1">E-mail</label>
+                            <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded focus:border-gov-blue focus:ring-1 focus:ring-gov-blue outline-none">
+                        </div>
+
+                        <h4 class="text-xs font-bold text-gray-400 uppercase border-b pb-1 mb-3 mt-6">Endereço</h4>
+
+                        <div class="relative">
+                            <label class="block text-sm font-bold text-gray-700 mb-1">CEP</label>
+                            <div class="flex">
+                                <input type="text" id="cepInput" required maxlength="9" onblur="buscaCep()" placeholder="00000-000" class="w-full px-3 py-2 border border-gray-300 rounded-l focus:border-gov-blue focus:ring-1 focus:ring-gov-blue outline-none">
+                                <button type="button" onclick="buscaCep()" class="bg-gov-blue text-white px-4 rounded-r hover:bg-gov-light transition-colors">
+                                    <i class="fa-solid fa-search"></i>
+                                </button>
+                            </div>
+                            <p id="cepLoading" class="hidden text-xs text-gov-blue mt-1 font-bold">Buscando...</p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="col-span-2">
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Rua</label>
+                                <input type="text" id="rua" readonly class="w-full px-3 py-2 border border-gray-200 bg-gray-100 rounded text-gray-600">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Número</label>
+                                <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded focus:border-gov-blue outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Bairro</label>
+                                <input type="text" id="bairro" readonly class="w-full px-3 py-2 border border-gray-200 bg-gray-100 rounded text-gray-600">
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Cidade</label>
+                                    <input type="text" id="cidade" readonly class="w-full px-3 py-2 border border-gray-200 bg-gray-100 rounded text-gray-600">
+                                </div>
+                                <div class="w-16">
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">UF</label>
+                                    <input type="text" id="uf" readonly class="w-full px-2 py-2 border border-gray-200 bg-gray-100 rounded text-gray-600 text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="mt-8 w-full bg-gov-green hover:bg-green-600 text-white font-bold py-4 rounded shadow-lg transform active:scale-95 transition-all uppercase tracking-wide flex justify-center items-center gap-2">
+                        <span>Pagar e Concluir</span>
+                        <i class="fa-solid fa-check-circle"></i>
+                    </button>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-[10px] text-gray-400 uppercase">Ambiente Seguro & Criptografado</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIX MODAL -->
+    <div id="pixModal" class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('pixModal')"></div>
+        
+        <div class="bg-white w-full max-w-md relative z-10 rounded-lg shadow-2xl overflow-hidden animate-fade-in">
+            <div class="bg-gov-blue p-4 text-center">
+                <i class="fa-brands fa-pix text-4xl text-gov-accent mb-2"></i>
+                <h3 class="text-white font-bold text-lg">Pagamento via PIX</h3>
+            </div>
+            
+            <div class="p-8">
+                <!-- Box de Valor -->
+                <div class="bg-blue-50 border border-blue-100 p-4 rounded mb-6 text-center">
+                    <p class="text-sm text-gray-600 mb-1">Valor do Pagamento</p>
+                    <p class="text-3xl font-black text-gov-blue" id="pixValueDisplay">R$ 0,00</p>
+                </div>
+
+                <!-- Dados do Beneficiário -->
+                <div class="mb-6 space-y-2">
+                    <div class="flex justify-between border-b border-gray-100 pb-2">
+                        <span class="text-sm text-gray-500">Beneficiário:</span>
+                        <span class="text-sm font-bold text-gray-800">Brenda do Nascimento Silveira</span>
+                    </div>
+                </div>
+
+                <!-- QR Code Placeholder -->
+                <div class="flex justify-center mb-6">
+                    <div class="bg-white p-2 border-2 border-dashed border-gray-300 rounded">
+                        <i class="fa-solid fa-qrcode text-8xl text-gray-800"></i>
+                    </div>
+                </div>
+
+                <!-- Copia e Cola -->
+                <div class="relative">
+                    <label class="text-xs font-bold text-gray-500 uppercase mb-1 block">Chave Pix (CPF)</label>
+                    <div class="flex gap-2">
+                        <input type="text" value="081.904.013-43" readonly id="pixKey" class="w-full bg-gray-100 border border-gray-300 px-3 py-2 rounded text-gray-700 font-mono font-bold text-center">
+                        <button onclick="copyPix()" class="bg-gov-blue hover:bg-gov-light text-white px-4 rounded font-bold transition-colors">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                    <div id="copyFeedback" class="hidden text-center text-xs text-green-600 font-bold mt-2">
+                        <i class="fa-solid fa-check"></i> Chave copiada com sucesso!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-4 text-center border-t">
+                <button onclick="closeModal('pixModal'); closeModal('checkoutModal')" class="text-gray-500 hover:text-gray-800 text-sm font-bold">
+                    Fechar Janela
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const formatMoney = (value) => {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        };
+
+        function openCheckout(planName, price) {
+            document.getElementById('selectedPlanDisplay').innerText = planName;
+            document.getElementById('priceDisplay').innerText = formatMoney(price);
+            document.getElementById('pixValueDisplay').innerText = formatMoney(price);
+            
+            const modal = document.getElementById('checkoutModal');
+            const overlay = document.getElementById('checkoutOverlay');
+            const panel = document.getElementById('checkoutPanel');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0');
+                panel.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modalId === 'checkoutModal') {
+                const overlay = document.getElementById('checkoutOverlay');
+                const panel = document.getElementById('checkoutPanel');
+                overlay.classList.add('opacity-0');
+                panel.classList.add('translate-x-full');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function showPixModal() {
+            document.getElementById('pixModal').classList.remove('hidden');
+        }
+
+        async function buscaCep() {
+            let cep = document.getElementById('cepInput').value.replace(/\D/g, '');
+            if (cep.length === 8) {
+                document.getElementById('cepLoading').classList.remove('hidden');
+                try {
+                    const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                    const data = await response.json();
+                    if (!data.erro) {
+                        document.getElementById('rua').value = data.logradouro;
+                        document.getElementById('bairro').value = data.bairro;
+                        document.getElementById('cidade').value = data.localidade;
+                        document.getElementById('uf').value = data.uf;
+                        document.getElementsByName('numero')[0]?.focus();
+                    } else { alert('CEP não encontrado.'); }
+                } catch (error) { console.error(error); } 
+                finally { document.getElementById('cepLoading').classList.add('hidden'); }
+            }
+        }
+
+        function copyPix() {
+            const pixKey = document.getElementById('pixKey');
+            pixKey.select();
+            pixKey.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(pixKey.value).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.classList.remove('hidden');
+                setTimeout(() => feedback.classList.add('hidden'), 3000);
+            });
+        }
+
+        document.getElementById('cepInput').addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,3})/);
+            e.target.value = !x[2] ? x[1] : x[1] + '-' + x[2];
+        });
+    </script>
+</body>
+</html>
